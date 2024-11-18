@@ -1,22 +1,44 @@
-[
-  ":flag_us: __Blizzard World__",
-  ":flag_pt: __Esperança__",
-  ":flag_us: __Route 66__",
-  ":flag_gi: __Watchpoint: Gibraltar__",
-  ":flag_it: __Colosseo__",
-  ":flag_au: __New Junk City__",
-  ":earth_africa: __Numbani__",
-  ":flag_cn: __Lijiang Tower__",
-  ":flag_us: __Hollywood__",
-  ":flag_in: __Suravasa__",
-  ":flag_gb: __King's Row__",
-  ":flag_iq: __Oasis__",
-  ":flag_mc: __Circuit Royal__",
-  ":flag_ca: __New Queen Street__",
-  ":flag_us: __Midtown__",
-  ":flag_pe: __Runasapi__",
-  ":flag_gr: __Ilios__",
-  ":flag_de: __Eichenwalde__",
-  ":flag_np: __Nepal__",
-  ":flag_cu: __Havana__"
-]
+{
+  "control": [
+    ":flag_aq: __Antarctic Peninsula__",
+    ":flag_kr: __Busan__",
+    ":flag_gr: __Ilios__",
+    ":flag_cn: __Lijiang Tower__",
+    ":flag_np: __Nepal__",
+    ":flag_iq: __Oasis__",
+    ":flag_ws: __Samoa__"
+  ],
+  "hybrid": [
+    ":flag_us: __Blizzard World__",
+    ":flag_de: __Eichenwalde__",
+    ":flag_us: __Hollywood__",
+    ":flag_uk: __King's Row__",
+    ":flag_us: __Midtown__",
+    ":earth_africa: __Numbani__",
+    ":flag_br: __Paraíso__"
+  ],
+  "flashpoint": [
+    ":flag_au: __New Junk City__",
+    ":flag_in: __Suravasa__"
+  ],
+  "push": [
+    ":flag_it: __Colosseo__",
+    ":flag_pt: __Esperança__",
+    ":flag_ca: __New Queen Street__",
+    ":flag_pe: __Runasapi__"
+  ],
+  "escort": [
+    ":flag_mc: __Circuit Royal__",
+    ":flag_mx: __Dorado__",
+    ":flag_cu: __Havana__",
+    ":flag_au: __Junkertown__",
+    ":flag_it: __Rialto__",
+    ":flag_us: __Route 66__",
+    ":flag_np: __Shambali Monastery__",
+    ":flag_gi: __Watchpoint: Gibraltar__"
+  ],
+  "clash": [
+    ":flag_eg: __Throne of Anubis__",
+    ":flag_jp: __Hanaoka__"
+  ]
+}

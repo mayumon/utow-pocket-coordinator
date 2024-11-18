@@ -7,7 +7,6 @@ from utils import load_teams, load_maps
 
 class UTOWPocketCoordinator(tk.Tk):
     def __init__(self):
-
         super().__init__()
         self.title("UTOW Pocket Coordinator")
         self.geometry("1000x800")
@@ -27,6 +26,8 @@ class UTOWPocketCoordinator(tk.Tk):
         else:
             self.bye_team = None
 
+        # define game mode order
+        self.game_mode_order = ["control", "hybrid", "flashpoint", "push", "escort", "clash"]
         self.last_week_file = 'last_week_matches.json'
 
         # create ui
@@ -185,12 +186,18 @@ class UTOWPocketCoordinator(tk.Tk):
                 self.create_game_widgets(frame, match_info, game_num)
 
     def create_game_widgets(self, frame, match_info, game_num):
-
         ttk.Label(frame, text=f"Game {game_num} Map:").grid(row=2 + game_num, column=0, padx=5, pady=2, sticky="e")
         map_var = tk.StringVar()
 
+        # Determine the game mode based on game number
+        if 1 <= game_num <= 6:
+            game_mode = self.game_mode_order[game_num - 1]
+            available_maps = self.maps.get(game_mode, [])
+        else:
+            available_maps = []  # No maps available for undefined game modes
+
         map_dropdown = ttk.Combobox(
-            frame, values=self.maps, textvariable=map_var, state="readonly", width=25
+            frame, values=available_maps, textvariable=map_var, state="readonly", width=25
         )
 
         map_dropdown.grid(row=2 + game_num, column=1, padx=5, pady=2, sticky="w")
@@ -258,7 +265,6 @@ class UTOWPocketCoordinator(tk.Tk):
 
         team1 = match_info["team1"].get()
         team2 = match_info["team2"].get()
-
         if game_num - 1 < len(match_info["game_widgets"]):
             game_widget = match_info["game_widgets"][game_num - 1]
             game_widget["winner"].set('')
@@ -353,8 +359,10 @@ class UTOWPocketCoordinator(tk.Tk):
                 else:
                     winner_text = "DRAW"
 
+                # Header line with :coconut: emojis and winner
                 match_line = f":coconut:{team1} vs. :coconut:{team2}: {winner_text}\n"
 
+                # Append map details without list items and bold
                 for game in match["games"]:
                     map_name = game["map"]
                     game_winner = game["winner"]
