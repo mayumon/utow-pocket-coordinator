@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+import tkinter.font as tkfont
 import json
 import os
 from utils import load_teams, load_maps
@@ -11,6 +12,16 @@ class UTOWPocketCoordinator(tk.Tk):
         self.title("UTOW Pocket Coordinator")
         self.geometry("1000x800")
         self.minsize(1000, 800)
+
+        self.custom_font = tkfont.Font(family="Small Fonts", size=10, weight="normal")
+
+        # create styles
+        self.style = ttk.Style()
+        self.style.configure("TLabel", font=self.custom_font)
+        self.style.configure("TButton", font=self.custom_font)
+        self.style.configure("TCombobox", font=self.custom_font)
+        self.style.configure("TEntry", font=self.custom_font)
+        self.style.configure("Header.TLabelframe.Label", foreground="#b54882", font=self.custom_font)
 
         # load teams + maps
         self.teams = load_teams()
@@ -32,10 +43,6 @@ class UTOWPocketCoordinator(tk.Tk):
 
         # define header color
         self.header_color = "#b54882"
-
-        # create styles
-        self.style = ttk.Style()
-        self.style.configure("Header.TLabelframe.Label", foreground=self.header_color)
 
         # create ui
         self.create_widgets()
@@ -99,7 +106,7 @@ class UTOWPocketCoordinator(tk.Tk):
         announcement_scrollbar = ttk.Scrollbar(announcement_frame, orient="vertical")
 
         self.announcement_text = tk.Text(
-            announcement_frame, wrap="word", yscrollcommand=announcement_scrollbar.set, width=40
+            announcement_frame, wrap="word", yscrollcommand=announcement_scrollbar.set, width=40, font=self.custom_font
         )
 
         announcement_scrollbar.config(command=self.announcement_text.yview)
@@ -196,12 +203,12 @@ class UTOWPocketCoordinator(tk.Tk):
         ttk.Label(frame, text=f"Game {game_num} Map:").grid(row=2 + game_num, column=0, padx=5, pady=2, sticky="e")
         map_var = tk.StringVar()
 
-        # Determine the game mode based on game number
+        # calculate game mode based on game number
         if 1 <= game_num <= 6:
             game_mode = self.game_mode_order[game_num - 1]
             available_maps = self.maps.get(game_mode, [])
         else:
-            available_maps = []  # No maps available for undefined game modes
+            available_maps = []
 
         map_dropdown = ttk.Combobox(
             frame, values=available_maps, textvariable=map_var, state="readonly", width=25
