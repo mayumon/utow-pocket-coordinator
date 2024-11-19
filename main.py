@@ -30,6 +30,13 @@ class UTOWPocketCoordinator(tk.Tk):
         self.game_mode_order = ["control", "hybrid", "flashpoint", "push", "escort", "clash"]
         self.last_week_file = 'last_week_matches.json'
 
+        # define header color
+        self.header_color = "#b54882"
+
+        # create styles
+        self.style = ttk.Style()
+        self.style.configure("Header.TLabelframe.Label", foreground=self.header_color)
+
         # create ui
         self.create_widgets()
 
@@ -83,7 +90,7 @@ class UTOWPocketCoordinator(tk.Tk):
         right_frame = ttk.Frame(self)
         right_frame.grid(row=0, column=1, sticky="nsew", padx=(5, 10), pady=10)
 
-        announcement_label = ttk.Label(right_frame, text="Announcement:", font=("Helvetica", 14))
+        announcement_label = ttk.Label(right_frame, text="Announcement:")
         announcement_label.pack(anchor="w")
 
         announcement_frame = ttk.Frame(right_frame)
@@ -92,7 +99,7 @@ class UTOWPocketCoordinator(tk.Tk):
         announcement_scrollbar = ttk.Scrollbar(announcement_frame, orient="vertical")
 
         self.announcement_text = tk.Text(
-            announcement_frame, wrap="word", yscrollcommand=announcement_scrollbar.set, font=("Courier", 10), width=40
+            announcement_frame, wrap="word", yscrollcommand=announcement_scrollbar.set, width=40
         )
 
         announcement_scrollbar.config(command=self.announcement_text.yview)
@@ -119,7 +126,7 @@ class UTOWPocketCoordinator(tk.Tk):
         self.match_widgets.clear()
 
         for match_num in range(1, self.num_matches + 1):
-            frame = ttk.LabelFrame(self.matches_frame, text=f"Match {match_num}")
+            frame = ttk.LabelFrame(self.matches_frame, text=f"Match {match_num}", style="Header.TLabelframe")
             frame.pack(fill="x", padx=5, pady=5)
 
             # teams selection
@@ -160,7 +167,7 @@ class UTOWPocketCoordinator(tk.Tk):
             )
 
             decrease_game_btn.pack(side="left")
-            game_var = tk.IntVar(value=3) # default: 3
+            game_var = tk.IntVar(value=3)  # default: 3
             game_label = ttk.Label(games_control_frame, textvariable=game_var)
             game_label.pack(side="left", padx=5)
 
