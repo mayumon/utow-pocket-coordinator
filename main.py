@@ -359,10 +359,8 @@ class UTOWPocketCoordinator(tk.Tk):
                 else:
                     winner_text = "DRAW"
 
-                # Header line with :coconut: emojis and winner
                 match_line = f":coconut:{team1} vs. :coconut:{team2}: {winner_text}\n"
 
-                # Append map details without list items and bold
                 for game in match["games"]:
                     map_name = game["map"]
                     game_winner = game["winner"]
